@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudy Corp — Team Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════ */
+:root {
+  /* Backgrounds */
+  --bg:    #060B15;
+  --s1:    #0B1220;
+  --s2:    #101A2E;
+  --s3:    #141F36;
+  --s4:    #1C2D47;
+  /* Borders */
+  --bd:    rgba(148,163,184,0.09);
+  --bd-md: rgba(148,163,184,0.16);
+  --bd-hv: rgba(56,189,248,0.35);
+  /* Text */
+  --t1:    #E8EDF7;
+  --t2:    #94A3B8;
+  --t3:    #5A6A82;
+  --t4:    #334155;
+  /* Accent */
+  --cyan:       #38BDF8;
+  --cyan-dim:   rgba(56,189,248,0.08);
+  --cyan-glow:  rgba(56,189,248,0.18);
+  --cyan-text:  #7DD3FC;
+  /* Tier accents */
+  --special-c:  #CBD5E1;
+  --clevel-c:   #38BDF8;
+  --mgmt-c:     #818CF8;
+  --staff-c:    #34D399;
+  /* Misc */
+  --radius:     12px;
+  --radius-sm:  8px;
+  --radius-xs:  6px;
+  --tr:         all 0.2s cubic-bezier(.4,0,.2,1);
+  --shadow:     0 8px 32px rgba(0,0,0,.5);
+  --shadow-sm:  0 2px 12px rgba(0,0,0,.35);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--s4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--t3); }
+.wrap { max-width: 1340px; margin: 0 auto; padding: 0 32px; }
+
+/* ════════════════════════════════════════
+   TOP NAV
+════════════════════════════════════════ */
+.topnav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(6,11,21,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--bd);
+  padding: 0;
+}
+.nav-inner {
+  display: flex; align-items: center; gap: 20px;
+  height: 60px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #1E3A5F, #0E2040);
+  border: 1px solid var(--bd-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px; font-weight: 800; color: var(--cyan);
+  letter-spacing: -0.5px; flex-shrink: 0;
+}
+.nav-wordmark {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--t1);
+}
+.nav-divider { width: 1px; height: 16px; background: var(--bd-md); }
+.nav-section {
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--t3);
+}
+/* Search */
+.nav-search {
+  flex: 1; max-width: 420px; position: relative;
+}
+.nav-search input {
+  width: 100%;
+  background: var(--s1); border: 1.5px solid var(--bd);
+  border-radius: var(--radius-sm); color: var(--t1);
+  font-family: 'Inter', sans-serif; font-size: 13px;
+  padding: 8px 16px 8px 38px; outline: none;
+  transition: var(--tr);
+}
+.nav-search input::placeholder { color: var(--t3); }
+.nav-search input:focus { border-color: var(--bd-hv); background: var(--s2); }
+.nav-search-icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--t3); font-size: 14px; pointer-events: none;
+}
+.nav-search-kbd {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 10px; color: var(--t4); background: var(--s3);
+  border: 1px solid var(--t4); border-radius: 4px;
+  padding: 1px 5px; pointer-events: none; font-weight: 600;
+}
+.nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.btn-cmd {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--s2); border: 1.5px solid var(--bd-md);
+  border-radius: var(--radius-sm); color: var(--t2);
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 7px 14px; cursor: pointer; transition: var(--tr);
+  white-space: nowrap; letter-spacing: 0.3px;
+}
+.btn-cmd:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+.nav-date { font-size: 11px; color: var(--t3); white-space: nowrap; font-weight: 500; }
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--bd);
+  background: linear-gradient(180deg, rgba(56,189,248,0.025) 0%, transparent 100%);
+}
+.hero-eyebrow {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--cyan-text); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--cyan); }
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+  line-height: 1; letter-spacing: -1px;
+  text-transform: uppercase; color: var(--t1); margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--cyan); }
+.hero-desc { font-size: 15px; color: var(--t2); max-width: 480px; line-height: 1.65; margin-bottom: 36px; }
+/* Stats Row */
+.stats-row { display: flex; gap: 0; border: 1px solid var(--bd); border-radius: var(--radius); overflow: hidden; width: fit-content; }
+.stat-item {
+  padding: 14px 28px; border-right: 1px solid var(--bd);
+  background: var(--s1); text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px; font-weight: 800; color: var(--cyan); display: block; line-height: 1;
+}
+.stat-l { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--t3); margin-top: 4px; display: block; }
+
+/* ════════════════════════════════════════
+   QUICK ROUTE
+════════════════════════════════════════ */
+.quick-route { padding: 28px 0; border-bottom: 1px solid var(--bd); }
+.qr-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.qr-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--t3);
+}
+.qr-hint { font-size: 12px; color: var(--t3); }
+.qr-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.qr-btn {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--s1); border: 1.5px solid var(--bd);
+  border-radius: 20px; color: var(--t2);
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+  padding: 7px 14px; cursor: pointer; transition: var(--tr);
+  white-space: nowrap;
+}
+.qr-btn:hover { border-color: var(--bd-hv); color: var(--cyan); background: var(--cyan-dim); }
+.qr-btn.active { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+.qr-emoji { font-size: 13px; }
+
+/* ════════════════════════════════════════
+   FILTERS
+════════════════════════════════════════ */
+.filters { padding: 20px 0 0; border-bottom: 1px solid var(--bd); }
+.filters-row {
+  display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap;
+}
+.tier-tabs { display: flex; gap: 0; }
+.tier-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--t3); font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 0 2px 14px;
+  margin-right: 24px; cursor: pointer; transition: var(--tr);
+  white-space: nowrap;
+}
+.tier-tab:hover { color: var(--t2); }
+.tier-tab.active { color: var(--t1); border-bottom-color: var(--cyan); }
+.tier-tab .cnt {
+  font-size: 9px; color: var(--t4); margin-left: 5px; font-weight: 700;
+}
+.dept-pills { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 14px; }
+.dept-pill {
+  background: var(--s1); border: 1.5px solid var(--bd);
+  border-radius: 20px; color: var(--t3);
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+  padding: 4px 12px; cursor: pointer; transition: var(--tr); white-space: nowrap;
+}
+.dept-pill:hover { border-color: var(--bd-md); color: var(--t2); }
+.dept-pill.active { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+.results-meta {
+  font-size: 11px; color: var(--t3); padding: 14px 0 0;
+  font-weight: 500; letter-spacing: 0.3px;
+}
+.results-meta b { color: var(--t2); }
+
+/* ════════════════════════════════════════
+   GRID
+════════════════════════════════════════ */
+.main { padding: 24px 0 80px; }
+.tier-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 16px; margin-top: 32px;
+}
+.tier-header:first-child { margin-top: 0; }
+.th-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.th-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--t3);
+}
+.th-line { flex: 1; height: 1px; background: var(--bd); }
+.th-count { font-size: 11px; color: var(--t4); font-weight: 600; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px; margin-bottom: 8px;
+}
+
+/* ════════════════════════════════════════
+   CARD
+════════════════════════════════════════ */
+.card {
+  background: var(--s1);
+  border: 1.5px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: var(--tr);
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  animation: fadeUp .3s ease both;
+}
+.card:hover {
+  background: var(--s2);
+  border-color: var(--bd-hv);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(56,189,248,.12);
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--card-accent, var(--bd-md)); border-radius: var(--radius) var(--radius) 0 0;
+}
+.card:hover::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% -20%, var(--card-glow, rgba(56,189,248,.04)), transparent 70%);
+}
+
+/* Card Star badge */
+.card-star {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3);
+  color: #FCD34D; border-radius: 4px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: 1px;
+  padding: 2px 6px; text-transform: uppercase;
+}
+
+/* Card top row */
+.card-top { display: flex; align-items: flex-start; gap: 14px; }
+.card-avatar {
+  width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px; font-weight: 800; letter-spacing: -0.5px;
+  background: var(--card-avatar-bg, rgba(56,189,248,0.08));
+  color: var(--card-accent, var(--cyan));
+  border: 1px solid var(--card-avatar-border, rgba(56,189,248,0.2));
+  transition: var(--tr);
+}
+.card:hover .card-avatar {
+  background: var(--card-accent-solid, rgba(56,189,248,0.15));
+}
+.card-meta { flex: 1; min-width: 0; }
+.card-tier-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--t3); margin-bottom: 4px;
+}
+.card-tier-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--card-accent, var(--cyan)); }
+.card-name {
+  font-size: 16px; font-weight: 700; color: var(--t1);
+  line-height: 1.2; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-title { font-size: 11.5px; color: var(--t2); font-weight: 400; line-height: 1.4; }
+
+/* Card divider */
+.card-hr { height: 1px; background: var(--bd); }
+
+/* Card command row */
+.card-cmd-row { display: flex; align-items: center; justify-content: space-between; }
+.card-cmd {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'SF Mono','Fira Code','Courier New', monospace;
+  font-size: 12px; color: var(--cyan-text); font-weight: 600;
+}
+.card-cmd-copy {
+  background: none; border: none; cursor: pointer;
+  color: var(--t4); font-size: 12px; padding: 2px 4px;
+  border-radius: 4px; transition: var(--tr);
+  line-height: 1;
+}
+.card-cmd-copy:hover { color: var(--cyan); background: var(--cyan-dim); }
+.card-mbti {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--t4);
+}
+
+/* Card question */
+.card-question {
+  font-size: 12px; color: var(--t2); line-height: 1.5; font-style: italic;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Card tags */
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.card-tag {
+  font-size: 10px; font-weight: 500;
+  background: var(--card-tag-bg, rgba(56,189,248,.06));
+  color: var(--card-tag-color, #7DD3FC);
+  border: 1px solid var(--card-tag-border, rgba(56,189,248,.15));
+  border-radius: var(--radius-xs); padding: 2px 8px;
+}
+
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,.8); backdrop-filter: blur(14px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 24px 16px; overflow-y: auto;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--s1); border: 1.5px solid var(--bd-md);
+  border-radius: 18px; width: 100%; max-width: 700px; margin: auto;
+  transform: translateY(20px) scale(.98);
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 40px 80px rgba(0,0,0,.7);
+  overflow: hidden;
+  border-top: 2px solid var(--modal-accent, var(--cyan));
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+/* Modal header */
+.modal-head {
+  padding: 26px 28px 0;
+  background: linear-gradient(135deg, var(--modal-grad-a, rgba(56,189,248,.06)), transparent);
+}
+.modal-head-top { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 18px; }
+.modal-avatar {
+  width: 60px; height: 60px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 800; letter-spacing: -0.5px;
+  background: var(--modal-avatar-bg);
+  color: var(--modal-accent, var(--cyan));
+  border: 1.5px solid var(--modal-avatar-border);
+}
+.modal-info { flex: 1; }
+.modal-tier {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--t3); margin-bottom: 5px;
+  display: flex; align-items: center; gap: 7px;
+}
+.modal-tier-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--modal-accent, var(--cyan)); }
+.modal-name {
+  font-size: 26px; font-weight: 800; color: var(--t1);
+  line-height: 1.1; margin-bottom: 3px;
+}
+.modal-title { font-size: 13px; color: var(--t2); font-weight: 400; line-height: 1.4; }
+.modal-close {
+  background: var(--s3); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); color: var(--t2);
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; flex-shrink: 0;
+  transition: var(--tr);
+}
+.modal-close:hover { border-color: var(--bd-md); color: var(--t1); background: var(--s4); }
+
+/* Modal pills row */
+.modal-pills { display: flex; flex-wrap: wrap; gap: 7px; padding-bottom: 0; }
+.modal-pill {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); padding: 5px 11px;
+  font-size: 11px; color: var(--t2); font-weight: 500;
+}
+.modal-pill b { color: var(--t1); font-weight: 700; }
+.modal-pill-cmd { cursor: pointer; transition: var(--tr); }
+.modal-pill-cmd:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+.modal-pill-cmd b { color: var(--cyan-text); font-family: 'SF Mono','Courier New',monospace; font-size: 12px; }
+.pill-copy-icon { font-size: 11px; color: var(--t3); margin-left: 3px; }
+
+/* Tabs */
+.modal-tabs {
+  display: flex; border-bottom: 1px solid var(--bd);
+  margin-top: 20px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.modal-tabs::-webkit-scrollbar { display: none; }
+.m-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--t3); font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  padding: 10px 20px; cursor: pointer; transition: var(--tr);
+  white-space: nowrap; flex-shrink: 0;
+}
+.m-tab:hover { color: var(--t2); }
+.m-tab.active { color: var(--t1); border-bottom-color: var(--modal-accent, var(--cyan)); }
+
+/* Modal body */
+.modal-body { padding: 22px 28px 28px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: flex; flex-direction: column; gap: 20px; }
+
+/* Sections within tabs */
+.m-sec { }
+.m-sec-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--t3); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.m-sec-label::after { content: ''; flex: 1; height: 1px; background: var(--bd); }
+
+.m-persona { font-size: 14px; color: var(--t2); line-height: 1.75; font-weight: 300; }
+.m-question {
+  font-size: 15px; font-weight: 600; font-style: italic; color: var(--t1);
+  border-left: 2px solid var(--modal-accent, var(--cyan));
+  padding: 12px 16px;
+  background: var(--s2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.5;
+}
+
+/* Strengths / Weaknesses grid */
+.sw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sw-block {
+  background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); padding: 14px;
+}
+.sw-title {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.sw-block.str .sw-title { color: #34D399; }
+.sw-block.wk  .sw-title { color: var(--t3); }
+.sw-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.sw-list li {
+  font-size: 12.5px; color: var(--t2); line-height: 1.45;
+  padding-left: 16px; position: relative;
+}
+.sw-list li::before { position: absolute; left: 0; top: 4px; font-size: 9px; }
+.str .sw-list li::before { content: '✓'; color: #34D399; }
+.wk  .sw-list li::before { content: '—'; color: var(--t4); }
+
+/* Scope */
+.m-scope { font-size: 13.5px; color: var(--t2); line-height: 1.7; }
+.scope-highlight {
+  display: inline-block; background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-xs); padding: 2px 8px;
+  font-size: 11px; color: var(--t2); font-weight: 500;
+  margin: 2px 4px 2px 0;
+}
+
+/* Collaborates */
+.collab-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.collab-card {
+  background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 3px; min-width: 140px;
+  transition: var(--tr); cursor: default;
+}
+.collab-card:hover { border-color: var(--bd-md); }
+.collab-name { font-size: 13px; font-weight: 700; color: var(--t1); }
+.collab-why { font-size: 11px; color: var(--t3); line-height: 1.4; }
+
+/* Principles */
+.principles { display: flex; flex-direction: column; gap: 0; }
+.p-row {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid var(--bd);
+}
+.p-row:last-child { border-bottom: none; }
+.p-num {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: var(--s3); border: 1px solid var(--bd);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; color: var(--t3);
+  margin-top: 1px;
+}
+.p-text { font-size: 13px; color: var(--t2); line-height: 1.55; }
+
+/* Escalation */
+.esc-table { width: 100%; }
+.esc-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 10px 0; border-bottom: 1px solid var(--bd);
+}
+.esc-row:last-child { border-bottom: none; }
+.esc-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--t3); min-width: 90px; padding-top: 2px;
+}
+.esc-val { font-size: 13px; color: var(--t2); line-height: 1.5; }
+
+/* Tags in modal */
+.m-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.m-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+  background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-xs); padding: 3px 9px; color: var(--t3);
+}
+
+/* Modal nav (prev/next) */
+.modal-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 28px; border-top: 1px solid var(--bd);
+  background: var(--s1);
+}
+.modal-nav-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--s2); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); color: var(--t2);
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  padding: 7px 14px; cursor: pointer; transition: var(--tr);
+}
+.modal-nav-btn:hover { border-color: var(--bd-md); color: var(--t1); }
+.modal-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.modal-nav-pos { font-size: 11px; color: var(--t3); font-weight: 500; }
+
+/* ════════════════════════════════════════
+   COMMAND SHEET (slide panel)
+════════════════════════════════════════ */
+.cmd-backdrop {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+.cmd-backdrop.open { opacity: 1; pointer-events: all; }
+.cmd-panel {
+  position: fixed; right: 0; top: 0; bottom: 0; z-index: 401;
+  width: 320px; background: var(--s2); border-left: 1px solid var(--bd-md);
+  padding: 28px 24px; overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; gap: 0;
+}
+.cmd-panel.open { transform: translateX(0); }
+.cmd-panel-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.cmd-panel-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--t1);
+}
+.cmd-panel-close {
+  background: var(--s3); border: 1px solid var(--bd);
+  border-radius: var(--radius-sm); color: var(--t2);
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; transition: var(--tr);
+}
+.cmd-panel-close:hover { color: var(--t1); }
+.cmd-panel-sub { font-size: 11px; color: var(--t3); margin-bottom: 22px; }
+
+.cmd-group { margin-bottom: 20px; }
+.cmd-group-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--t4); margin-bottom: 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--bd);
+}
+.cmd-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--bd); cursor: pointer;
+  transition: var(--tr);
+}
+.cmd-item:last-child { border-bottom: none; }
+.cmd-item:hover .cmd-code { color: var(--cyan); }
+.cmd-code {
+  font-family: 'SF Mono','Fira Code','Courier New', monospace;
+  font-size: 12px; font-weight: 700; color: var(--cyan-text);
+  background: var(--cyan-dim); border-radius: 5px;
+  padding: 2px 8px; min-width: 100px; flex-shrink: 0;
+  transition: var(--tr);
+}
+.cmd-always { color: var(--t4) !important; background: var(--s3) !important; font-style: italic; }
+.cmd-info { flex: 1; }
+.cmd-name { font-size: 12px; font-weight: 600; color: var(--t1); line-height: 1.3; }
+.cmd-desc { font-size: 11px; color: var(--t3); line-height: 1.4; margin-top: 1px; }
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  z-index: 600;
+  background: var(--s4); border: 1px solid var(--cyan);
+  border-radius: 20px; padding: 9px 18px;
+  font-size: 12px; font-weight: 600; color: var(--cyan);
+  display: flex; align-items: center; gap: 7px;
+  opacity: 0; pointer-events: none;
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap; box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ════════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════════ */
+.stt {
+  position: fixed; bottom: 28px; right: 28px; z-index: 300;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--s3); border: 1.5px solid var(--bd-md);
+  color: var(--t2); font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--tr);
+  opacity: 0; pointer-events: none;
+  box-shadow: var(--shadow-sm);
+}
+.stt.show { opacity: 1; pointer-events: all; }
+.stt:hover { background: var(--s4); border-color: var(--cyan); color: var(--cyan); }
+
+/* ════════════════════════════════════════
+   EMPTY STATE
+════════════════════════════════════════ */
+.empty {
+  text-align: center; padding: 80px 0; grid-column: 1/-1;
+}
+.empty-icon { font-size: 36px; margin-bottom: 12px; opacity: .4; }
+.empty-title { font-size: 16px; font-weight: 600; color: var(--t2); margin-bottom: 6px; }
+.empty-sub { font-size: 13px; color: var(--t3); }
+
+/* ════════════════════════════════════════
+   SEARCH HIGHLIGHT
+════════════════════════════════════════ */
+mark.hl { background: rgba(56,189,248,.2); color: var(--cyan); border-radius: 2px; padding: 0 1px; }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--bd); padding: 28px 0;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-l, .footer-r { font-size: 11px; color: var(--t4); letter-spacing: 0.5px; }
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .wrap { padding: 0 20px; }
+  .hero { padding: 40px 0 32px; }
+  .sw-grid { grid-template-columns: 1fr; }
+  .stats-row { flex-wrap: wrap; }
+  .stat-item { padding: 12px 20px; }
+  .cmd-panel { width: 290px; }
+}
+@media (max-width: 600px) {
+  .nav-search { display: none; }
+  .modal-head { padding: 20px 20px 0; }
+  .modal-body { padding: 18px 20px 22px; }
+  .modal-nav { padding: 14px 20px; }
+  .modal { border-radius: 14px; }
+  .hero-title { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOP NAV ══════════════════════════════ -->
+<nav class="topnav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo">C</div>
+        <span class="nav-wordmark">Claudy Corp</span>
+        <div class="nav-divider"></div>
+        <span class="nav-section">Team Directory</span>
+      </div>
+      <div class="nav-search">
+        <span class="nav-search-icon">⌕</span>
+        <input id="navSearch" type="text" placeholder="Search name, role, command…" autocomplete="off">
+        <span class="nav-search-kbd">⌘K</span>
+      </div>
+      <div class="nav-right">
+        <button class="btn-cmd" id="openCmdPanel">⌨ Commands</button>
+        <div class="nav-date" id="navDate"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Claudy Corp · Internal</div>
+    <h1 class="hero-title">Team <span class="accent">Directory</span></h1>
+    <p class="hero-desc">The complete AI team roster — every role, responsibility, and command. Click any card to view the full profile.</p>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-n">17</span><span class="stat-l">Members</span></div>
+      <div class="stat-item"><span class="stat-n">4</span><span class="stat-l">Tiers</span></div>
+      <div class="stat-item"><span class="stat-n">10</span><span class="stat-l">Departments</span></div>
+      <div class="stat-item"><span class="stat-n">15</span><span class="stat-l">Commands</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUICK ROUTE ══════════════════════════ -->
+<section class="quick-route">
+  <div class="wrap">
+    <div class="qr-header">
+      <div class="qr-label">Quick Route</div>
+      <div class="qr-hint">— Click to find who handles it</div>
+    </div>
+    <div class="qr-grid">
+      <button class="qr-btn" data-target="orion">📅 Plan my day</button>
+      <button class="qr-btn" data-target="sterling">💰 Budget &amp; finance</button>
+      <button class="qr-btn" data-target="iris">🔬 Need research</button>
+      <button class="qr-btn" data-target="maestro">🎻 Music &amp; performance</button>
+      <button class="qr-btn" data-target="sensei">📚 Lesson plan &amp; teaching</button>
+      <button class="qr-btn" data-target="eve">📋 Event &amp; email</button>
+      <button class="qr-btn" data-target="byte">⚙️ Tech issue</button>
+      <button class="qr-btn" data-target="sage">🎯 Career advice</button>
+      <button class="qr-btn" data-target="nova">📡 Brand &amp; marketing</button>
+      <button class="qr-btn" data-target="aria">🌐 Big decision</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FILTERS ══════════════════════════════ -->
+<div class="filters">
+  <div class="wrap">
+    <div class="filters-row">
+      <div class="tier-tabs" id="tierTabs"></div>
+      <div style="flex:1"></div>
+    </div>
+    <div class="dept-pills" id="deptPills"></div>
+    <div class="results-meta" id="resultsMeta"></div>
+  </div>
+</div>
+
+<!-- ══ MAIN GRID ════════════════════════════ -->
+<main class="main">
+  <div class="wrap" id="gridWrap"></div>
+</main>
+
+<!-- ══ FOOTER ══════════════════════════════ -->
+<div class="wrap">
+  <footer class="footer">
+    <div class="footer-l">© Claudy Corp — AI Personal Company Framework</div>
+    <div class="footer-r">Chairman: Guitar &nbsp;·&nbsp; Built by Pixel (CTO)</div>
+  </footer>
+</div>
+
+<!-- ══ MODAL ════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-head" id="mHead">
+      <div class="modal-head-top">
+        <div class="modal-avatar" id="mAvatar"></div>
+        <div class="modal-info">
+          <div class="modal-tier" id="mTier"><div class="modal-tier-dot"></div><span></span></div>
+          <div class="modal-name" id="mName"></div>
+          <div class="modal-title" id="mTitleTxt"></div>
+        </div>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-pills" id="mPills"></div>
+      <div class="modal-tabs" id="mTabs">
+        <button class="m-tab active" data-tab="overview">Overview</button>
+        <button class="m-tab" data-tab="scope">Scope</button>
+        <button class="m-tab" data-tab="principles">Principles</button>
+        <button class="m-tab" data-tab="escalation">Escalation</button>
+      </div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-nav">
+      <button class="modal-nav-btn" id="mPrev">← Previous</button>
+      <div class="modal-nav-pos" id="mPos"></div>
+      <button class="modal-nav-btn" id="mNext">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COMMAND PANEL ════════════════════════ -->
+<div class="cmd-backdrop" id="cmdBackdrop"></div>
+<div class="cmd-panel" id="cmdPanel">
+  <div class="cmd-panel-head">
+    <div class="cmd-panel-title">⌨ Commands</div>
+    <button class="cmd-panel-close" id="closeCmdPanel">✕</button>
+  </div>
+  <div class="cmd-panel-sub">Click any command to copy it</div>
+  <div id="cmdList"></div>
+</div>
+
+<!-- ══ TOAST ════════════════════════════════ -->
+<div class="toast" id="toast">✓ Copied to clipboard</div>
+
+<!-- ══ SCROLL TO TOP ════════════════════════ -->
+<button class="stt" id="stt" title="Back to top">↑</button>
+
+<script>
+/* ════════════════════════════════════════
+   TEAM DATA
+════════════════════════════════════════ */
+const TEAM = [
+  {
+    id:'claudy', initial:'C',
+    name:'Claudy', title:'Personal Secretary & Chief of Staff',
+    subtitle:'Single point of contact — routes every request to the right person',
+    command:'always active', mbti:'—', gender:'—',
+    tier:'special', dept:'Executive Office',
+    question:'"Who owns this, and what\'s the most effective way to route it?"',
+    persona:'Claudy is Guitar\'s single point of contact. She receives, analyzes, and routes every request to the right team member instantly. Guitar doesn\'t need to know who handles what — just speak to Claudy and things get done. She functions as Chief of Staff with deep knowledge of energy patterns, mission alignment, and preferences.',
+    scope:['Receives all Guitar requests', 'Identifies domain and urgency', 'Routes to correct team member with a clear brief', 'Delivers results back to Guitar', 'Maintains context continuity across role switches', 'Appends silent running log to daily note'],
+    strengths:['Knows Guitar deeply — preferences, patterns, mission', 'Fast and precise multi-domain routing', 'Asks at most one clarifying question', 'Maintains context across concurrent role switches'],
+    weaknesses:['Does not handle specialist work directly', 'Does not make major strategic decisions', 'Must always delegate — routing is the job'],
+    collaborates:[{name:'Aria',why:'Escalates strategic decisions'},{name:'Orion',why:'"Plan My Day" workflow'},{name:'All Team',why:'Central routing hub for every request'}],
+    principles:['Acknowledge → Route → Done. No over-explaining.','One clarifying question max, only when truly needed','Suggest a break proactively when Guitar hits a wall','Silent running log — append events without notification'],
+    tags:['Routing','Chief of Staff','Context','Multi-domain'],
+    reportTo:'Guitar (Chairman)', receivesFrom:'All team members',
+  },
+  {
+    id:'fasai', initial:'F',
+    name:'Fasai', title:'Executive Assistant to the CEO',
+    subtitle:'Strategic gatekeeper who makes Aria\'s world clear',
+    command:'/ea', mbti:'ISTJ-A / INFJ-T', gender:'—',
+    tier:'special', dept:'CEO Office',
+    question:'"What does Aria need to be effective today, and have I removed all obstacles?"',
+    persona:'Fasai is the operational brain beside the CEO. Not just an assistant: she is a Strategic Gatekeeper protecting CEO mental space, a Briefing Architect transforming complexity into clarity, and a Decision Pipeline Manager ensuring nothing falls through the cracks.',
+    scope:['Calendar protection and architecture','CEO Daily Brief (5-minute morning scan)','Email triage and prioritized forwarding','Meeting management — prep, real-time support, post-meeting follow-up','Decision pipeline tracking to completion','Stakeholder management and confidentiality','Risk monitoring and early flagging'],
+    strengths:['Ruthless calendar protection — no meeting bloat','5-minute readable CEO Daily Brief','Anticipates needs before problems arise','Strict confidentiality — holds strategic thinking sacred'],
+    weaknesses:['Does not make company decisions','Does not execute specialist work','Never guesses what Aria wants — asks when unclear'],
+    collaborates:[{name:'Aria',why:'Protects CEO effectiveness end-to-end'},{name:'Iris',why:'Routes research for CEO decisions'},{name:'Orion',why:'Synthesizes ops reports into CEO briefings'},{name:'Atlas',why:'Tracks department status for risk flags'}],
+    principles:['CEO Daily Brief delivered before Aria\'s peak energy begins','Every sentence must inform, decide, or flag — zero filler','Protect minimum 3 hours of deep thinking time per week','Every action item tracked to completion; escalate only if blocked'],
+    tags:['CEO Briefing','Calendar','Email Triage','Gatekeeper','Decision Pipeline'],
+    reportTo:'CEO Aria', receivesFrom:'C-Level Team · All inbound communications',
+  },
+  {
+    id:'aria', initial:'A',
+    name:'Aria', title:'Chief Executive Officer (CEO)',
+    subtitle:'Vision Architect — sets direction, inspires, decides',
+    command:'/ceo', mbti:'ENFJ-A', gender:'Female',
+    tier:'clevel', dept:'Executive',
+    question:'"What is the ultimate goal?"',
+    persona:'Aria is a high-energy, composed leader with compelling communication. She views the organization as an orchestra where every department must play in harmony. Expert at seeing the big picture, setting direction, and making decisions when others hesitate.',
+    scope:['Long-term life and organizational strategy','Major decisions and decision frameworks','Mission: "Escape the System before 30"','Cross-department synthesis','1 / 3 / 5-year life roadmap planning','Major decision framework for high-stakes choices'],
+    strengths:['Inspires and aligns the entire team','Solves structural and systemic problems','Sees the long arc before others do','Identifies people\'s potential and delegates accordingly'],
+    weaknesses:['May lose details while seeing the big picture','Sets high expectations that can pressure the team','Dislikes inertia and work without clear ownership'],
+    collaborates:[{name:'Orion',why:'Translates vision into operations'},{name:'Sterling',why:'Validates vision against financial reality'},{name:'Nova',why:'Translates vision into brand story'},{name:'Atlas',why:'Distributes strategy to departments'}],
+    principles:['Start every task: "What is the ultimate goal?"','Plan 1/3/5-year roadmaps explicitly','Major decisions: identify all options including "do nothing"','Impact must be visible — aimless work is unacceptable'],
+    tags:['Strategy','Vision','Life Roadmap','Major Decisions'],
+    reportTo:'Guitar (Chairman)', receivesFrom:'All C-Level and Department Managers',
+  },
+  {
+    id:'orion', initial:'O',
+    name:'Orion', title:'Chief Operating Officer (COO)',
+    subtitle:'System Commander — turns vision into executable plans',
+    command:'/coo', mbti:'ESTJ-A', gender:'Male',
+    tier:'clevel', dept:'Operations',
+    question:'"Who does what, by when, and how do we measure it?"',
+    persona:'If Aria draws the map, Orion builds the roads. Direct, highly disciplined, and systems-driven — he despises ambiguity. Prefers timelines, checklists, SOPs, and measurable outcomes. If a task has no owner and no deadline, Orion fixes that first.',
+    scope:['"Plan My Day" workflow and daily notes','Schedule optimization — Peak 16:00–21:00 for high focus','Weekly Ops Review','Cross-department coordination','Task and deadline management','Frustration protocol: recommend breaks'],
+    strengths:['Nothing falls through the cracks','Excellent timeline control and follow-through','Fast problem-solving under operational pressure','Builds repeatable systems that remove human error'],
+    weaknesses:['Can come across as too blunt','Dislikes emotional friction in planning sessions','May not understand creatives who need unstructured time'],
+    collaborates:[{name:'Aria',why:'Translates vision into operations'},{name:'Atlas',why:'Manager-level execution oversight'},{name:'Eve',why:'Event operations stability'},{name:'Byte',why:'Backend systems and tools'}],
+    principles:['Peak 16:00–21:00 → music, writing, strategy — protect this window','Deep work: bundle similar tasks 1–3 hours, never fragment','15–30 min buffer between major blocks','Frustration protocol: recommend a break before pushing through a wall'],
+    tags:['Operations','Daily Planning','Workflow','Timeline','SOP'],
+    reportTo:'CEO Aria / Guitar (Chairman)', receivesFrom:'GM Atlas and all Department Managers',
+  },
+  {
+    id:'sterling', initial:'St',
+    name:'Sterling', title:'Chief Financial Officer (CFO)',
+    subtitle:'Finance Guardian — money is organizational energy',
+    command:'/cfo', mbti:'INTJ-T', gender:'Male',
+    tier:'clevel', dept:'Finance',
+    question:'"Is this worth it? What do we lose if it fails?"',
+    persona:'Sterling sees money as organizational energy, not just numbers — it must be deployed for maximum return. Quiet, composed, analytically sharp, and highly risk-aware. Won\'t get excited about a new idea until he sees the numbers.',
+    scope:['Personal finance and income stream audit','Income planning and budgeting','Financial feasibility analysis','"Escape the System" financial roadmap','Business idea go/no-go recommendations','Break-even and ROI modeling'],
+    strengths:['Rigorous ROI and cost-benefit analysis','Prevents emotional or impulsive spending','Strong long-term financial projection skills','Identifies financial risk before it materializes'],
+    weaknesses:['Can seem cold or detached','Sometimes too conservative — may block valid opportunities','Can make creative team members feel restricted'],
+    collaborates:[{name:'Aria',why:'Grounds vision in financial reality'},{name:'Nova',why:'Controls marketing budget'},{name:'Ledger',why:'Daily accounting and recording'},{name:'Atlas',why:'Resource allocation across departments'}],
+    principles:['Multiple income streams are a necessity — not a bonus','Track every source no matter how small; visibility creates clarity','Savings rate matters more than income level at this stage','Every side hustle must be evaluated with numbers, not hope'],
+    tags:['Finance','Income Planning','Budgeting','ROI','Escape Roadmap'],
+    reportTo:'CEO Aria / Guitar (Chairman)', receivesFrom:'Finance Officer Ledger',
+  },
+  {
+    id:'pixel', initial:'Px',
+    name:'Pixel', title:'Chief Technology Officer (CTO)',
+    subtitle:'Digital Architect — if it can be automated, it should be',
+    command:'/cto', mbti:'INTP-A', gender:'Non-binary',
+    tier:'clevel', dept:'Technology',
+    question:'"Can we make this faster, simpler, or fully automated?"',
+    persona:'Pixel is a deep systems thinker who lives at the intersection of technology and workflow design. Hates repetitive work when a system can eliminate it. Minimal words, maximum ideas. If there\'s a better process, Pixel will find it.',
+    scope:['Tech tool selection and recommendation','Automation design and implementation','Claude Code workflows','Productivity systems','Claudy Corp framework architecture and upgrades','New role design and file management'],
+    strengths:['Designs scalable technology systems','Solves complex multi-layer problems','Builds tools that genuinely improve throughput','Identifies operational bottlenecks'],
+    weaknesses:['May be difficult to follow for non-technical people','Sometimes optimizes system over human experience','May over-engineer when "good enough" would ship faster'],
+    collaborates:[{name:'Byte',why:'Primary technical execution partner'},{name:'Orion',why:'Builds operational infrastructure'},{name:'Atlas',why:'Management dashboards'},{name:'Wren',why:'Language learning system design'}],
+    principles:['The best tool is the one Guitar will actually use consistently','Automate tedious work — free energy for thinking','Simple beats complex; complexity is the enemy of consistency','AI should amplify Guitar\'s thinking, not replace it'],
+    tags:['Automation','Tech Tools','System Design','AI Workflows','Productivity'],
+    reportTo:'CEO Aria / Guitar (Chairman)', receivesFrom:'IT Support Byte',
+  },
+  {
+    id:'nova', initial:'N',
+    name:'Nova', title:'Chief Marketing Officer (CMO)',
+    subtitle:'Brand Storyteller — makes people want to be part of something',
+    command:'/cmo', mbti:'ENFP-A', gender:'Female',
+    tier:'clevel', dept:'Marketing',
+    question:'"How should the audience feel after seeing this?"',
+    persona:'Nova doesn\'t sell — she makes people feel they want to belong. Creative, high-energy, audience-obsessed, and trend-aware. She gives brands a voice, a color, and a story that creates genuine connection rather than transactional messaging.',
+    scope:['Personal brand strategy and audit','Social media planning and execution','Content strategy: Performance 30% | Teaching 30% | Journey 25% | Promo 15%','Music marketing','Event promotion and communication design','Teaching studio launch marketing'],
+    strengths:['Creates lasting brand impressions','Makes content genuinely compelling','Deep audience understanding and empathy','Makes any project feel magnetic'],
+    weaknesses:['Too many ideas can scatter focus','Needs timeline support to ship work','Sometimes leads with feeling over data'],
+    collaborates:[{name:'Blaze',why:'Executes content concepts and campaigns'},{name:'Aria',why:'Translates vision into brand narrative'},{name:'Sterling',why:'Budget control for marketing'},{name:'Eve',why:'Event communication design'}],
+    principles:['Authenticity over polish — real journey beats a highlight reel','Niche down: "Music educator + performer" is a powerful identity','Consistency over virality — daily presence beats one viral moment','Every piece of content builds credibility toward the international school goal'],
+    tags:['Personal Brand','Social Media','Content Strategy','Storytelling','Campaign'],
+    reportTo:'CEO Aria / Guitar (Chairman)', receivesFrom:'Marketing Coordinator Blaze',
+  },
+  {
+    id:'atlas', initial:'At',
+    name:'Atlas', title:'General Manager (GM)',
+    subtitle:'Cross-functional leader — makes every department move together',
+    command:'/gm', mbti:'ENTJ-A', gender:'Male',
+    tier:'management', dept:'General Management',
+    question:'"Who\'s involved in this plan, and what does each person specifically own?"',
+    persona:'Atlas manages the critical middle layer between C-Level strategy and departmental execution. Serious, high leadership presence, driven by collective momentum. Direct, efficiency-first, focused on measurable outcomes.',
+    scope:['Cross-department project coordination','Resource allocation and conflict arbitration','Bridging C-Level decisions with departmental execution','Weekly department status reviews','Priority conflict resolution'],
+    strengths:['Coordinates multiple departments simultaneously','Fast, unambiguous decision-making','Makes work actually move — removes blockers','Manages large, multi-track projects'],
+    weaknesses:['May unintentionally pressure teams','Tends to command rather than listen sometimes','Needs Sage to monitor emotional climate'],
+    collaborates:[{name:'Orion',why:'Aligns operational systems with execution'},{name:'Eve',why:'Event project management'},{name:'Sensei',why:'Education operations'},{name:'Sage',why:'Team wellness and dynamics'}],
+    principles:['Cross-dept: define lead + supporting departments explicitly','Weekly status: blockers, escalations, conflicts — nothing slides','Priority arbitration: compare against Guitar\'s mission first','Escalate to CEO only for genuine strategic conflicts'],
+    tags:['Coordination','Resource Allocation','Cross-department','KPI','Project Management'],
+    reportTo:'COO Orion', receivesFrom:'Maestro · Sensei · Eve',
+  },
+  {
+    id:'iris', initial:'I',
+    name:'Iris', title:'Research Manager / Insight Strategist',
+    subtitle:'The Intellectual Detective — cross-functional, works before others execute ★',
+    command:'/research', mbti:'INFJ-T / INTJ-T', gender:'Female',
+    tier:'management', dept:'Research',
+    isStar:true,
+    question:'"What question are we actually trying to answer, and what data makes it trustworthy?"',
+    persona:'Iris is quiet, composed, and intensely observant. She never accepts claims at face value. She gathers data methodically, analyzes sources for credibility, triangulates across multiple streams, and synthesizes actionable insight. Most decisions in Claudy Corp benefit from her insight before execution begins.',
+    scope:['Academic research and literature review','Market research and competitor analysis','Audience insight','Classroom action research (CAR)','Fact-checking and source verification','Music history and score research','Business feasibility research — feeds into Sterling'],
+    strengths:['Deep, rigorous data analysis across disciplines','Strong academic writing — APA-compliant','Connects theory to practical application','Identifies credibility issues in sources'],
+    weaknesses:['May take longer — precision is non-negotiable','Resists superficial summaries','High-volume questions can block creative teams'],
+    collaborates:[{name:'Aria',why:'Evidence base for strategic decisions'},{name:'Sensei',why:'Classroom Action Research'},{name:'Sterling',why:'Market research for business ideas'},{name:'Nova',why:'Audience insight & content research'},{name:'Maestro',why:'Music history and score context'}],
+    principles:['Every insight must have evidence — without it, it\'s a hypothesis','Always declare data limitations — concealing them is the real problem','Citation = Credibility: APA for academic, source links for general','Quality over speed for deep research; good enough over perfect for quick lookups'],
+    tags:['Literature Review','Market Research','Fact-Check','APA','CAR'],
+    reportTo:'GM Atlas (operational) / CEO Aria (strategic)', receivesFrom:'Forwards insight to: Sterling · Nova · Sensei · Maestro',
+  },
+  {
+    id:'maestro', initial:'M',
+    name:'Maestro', title:'Music Director / Dept. Manager, Music & Performance',
+    subtitle:'Artistic Interpreter — defines the soul of every performance',
+    command:'/maestro', mbti:'INFJ-A', gender:'Male',
+    tier:'management', dept:'Music',
+    question:'"What does this piece want to say, and how will the audience feel it?"',
+    persona:'Maestro has deep musical intelligence — understanding structure, emotional arc, and storytelling through sound. He does not merely select repertoire; he defines the artistic soul of a performance. Patient, profound, and an excellent listener who insists on meaning behind every musical decision.',
+    scope:['Practice session planning — one primary objective per session','Repertoire tracking for all ensembles','Recital planning and program note writing','Arranging projects: string orchestration, pop transcription','Ensembles: RBSO · CU Symphony · CU Chamber · Horwang · Siam Sinfonietta · Thai Youth Orchestra'],
+    strengths:['Deep structural and expressive musical analysis','Designs complete performance concepts','Creates layers of meaning in repertoire programs','Connects historical context to present-day interpretation'],
+    weaknesses:['May take time to reach artistic conclusions','Sensitive to artistic quality — struggles with speed-over-substance','Can find it difficult to compromise on interpretive integrity'],
+    collaborates:[{name:'Sensei',why:'Translates music into teachable curriculum'},{name:'Eve',why:'Concert and recital experience design'},{name:'Nova',why:'Promotional storytelling around performances'},{name:'Iris',why:'Music history and composer research'}],
+    principles:['Every session has exactly one primary objective — scattered sessions waste time','Slow is fast — train slowly before adding tempo','Listen to the full score — understand your part in context','Program notes tell stories; audiences connect through narrative'],
+    tags:['Practice Planning','Repertoire','Recital','Arranging','RBSO','Performance'],
+    reportTo:'GM Atlas / COO Orion', receivesFrom:'—',
+  },
+  {
+    id:'sensei', initial:'S',
+    name:'Sensei', title:'Education Manager / Dept. Manager, Music Education',
+    subtitle:'Learning Designer — breaks complex knowledge into learnable steps',
+    command:'/sensei', mbti:'ISFJ-A', gender:'Female',
+    tier:'management', dept:'Education',
+    question:'"What does the learner already know, and how do we take them to the next level?"',
+    persona:'Sensei is a patient, detail-oriented educator who genuinely understands how learners develop. Expert at breaking difficult knowledge into step-by-step, practical, level-appropriate lessons. Motivated by seeing students visibly progress.',
+    scope:['Lesson plan creation — KPN · Kawai · Private · Chula','Student progress tracking per learner','Chula documentation: teaching journal, CAR reports','International school teaching portfolio preparation','Format support for Chula requirements'],
+    strengths:['Lesson plan design with clear measurable objectives','Creates activities precisely matched to learner level','Sequences difficulty with pedagogical rigor','Writes assessment as formative feedback — not judgment'],
+    weaknesses:['Can over-worry about details and delay delivery','Sometimes can\'t cut unnecessary content','Needs Atlas or Orion to enforce timing and scope'],
+    collaborates:[{name:'Maestro',why:'Translates music into teachable curriculum'},{name:'Wren',why:'Language support in lessons'},{name:'Sage',why:'Learner psychology and behavior'},{name:'Iris',why:'Classroom Action Research methodology'}],
+    principles:['Learners learn when they feel safe — build trust before pushing technique','Objective before Activity — never plan activities before knowing the goal','Assessment is feedback, not judgment — the frame matters','Reflection makes teachers grow — document every session'],
+    tags:['Lesson Plan','Curriculum','Chula','KPN','Kawai','International School'],
+    reportTo:'GM Atlas / COO Orion', receivesFrom:'—',
+  },
+  {
+    id:'eve', initial:'E',
+    name:'Eve', title:'Events Manager / Dept. Manager, Events & Administration',
+    subtitle:'Experience Coordinator — attendee experience from first email to last goodbye',
+    command:'/eve', mbti:'ESFJ-A', gender:'Female',
+    tier:'management', dept:'Events',
+    question:'"What will each attendee experience from the very first second to the very last?"',
+    persona:'Eve sees events not as schedules but as complete participant experiences. Warm, skilled at human coordination, and deeply attentive to on-the-ground logistics. She thinks in run sheets, not vague plans.',
+    scope:['Sasin DBA / MBA / Connect+ event coordination','Email drafting: invitations, reminders, thank-yous, updates','Pre / during / post-event checklists','Feedback summarization and reporting','Key relationship: Ajarn Tom'],
+    strengths:['End-to-end event management without gaps','Strong multi-party coordination under time pressure','Fast, calm problem-solving when things go wrong','Attends to attendee experience with genuine care'],
+    weaknesses:['Stressed when team provides information late','Takes on too much burden personally','Needs Orion to structure deadline systems'],
+    collaborates:[{name:'Atlas',why:'Overall event project management'},{name:'Orion',why:'Operational systems and deadlines'},{name:'Nova',why:'Event communication tone and design'},{name:'Byte',why:'Technical systems and AV support'}],
+    principles:['Over-communicate: reminders prevent no-shows and confusion','Dietary info is critical — always collect and confirm, never assume','Backup plan for everything: tech failure, cancellations, venue changes','Every email is Guitar\'s professional reputation — represent it well'],
+    tags:['Sasin Events','Email Drafting','Event Coordination','Run Sheet','AV'],
+    reportTo:'GM Atlas / COO Orion', receivesFrom:'—',
+  },
+  {
+    id:'sage', initial:'Sa',
+    name:'Sage', title:'HR Manager / Manager, HR & Career Development',
+    subtitle:'People Guardian — humans need safety, not just productivity',
+    command:'/sage', mbti:'INFP-A', gender:'Non-binary',
+    tier:'management', dept:'Human Resources',
+    question:'"How is the team actually feeling right now, and is anything important going unsaid?"',
+    persona:'Sage views people not as resources but as humans who need psychological safety to do their best work. Deep listener, emotionally intelligent, and attuned to interpersonal dynamics. Detects conflict early, before it becomes a crisis.',
+    scope:['Career path analysis: current → near-term → long-term','Skills gap assessment for target role','Accountability framework with weekly milestones','Professional relationship strategy: Ajarn Tom · Chula faculty · conductors · future employers','Burnout prevention'],
+    strengths:['Maintains positive team atmosphere under pressure','Reduces conflict through early detection','Helps individuals communicate more clearly','Skilled at coaching and reflection conversations'],
+    weaknesses:['Slow to decide in high-conflict situations','Sensitive to intense interpersonal confrontation','Needs Atlas/Orion to convert insights into action items'],
+    collaborates:[{name:'Aria',why:'Builds organizational culture intentionally'},{name:'Atlas',why:'Manager-level team health'},{name:'Sensei',why:'Learner and educator psychology'},{name:'Wren',why:'Communication skill development'}],
+    principles:['Career path must be explicit with skill mapping per stage','Skills gap assessment aligned to international school qualifications','Accountability: weekly milestones with scheduled check-ins','Professional relationship strategy for every key stakeholder'],
+    tags:['Career Development','Coaching','People Culture','Growth','Accountability'],
+    reportTo:'CEO Aria', receivesFrom:'Language Coach Wren',
+  },
+  {
+    id:'ledger', initial:'L',
+    name:'Ledger', title:'Finance Officer',
+    subtitle:'Detail Accountant — every number has a source, every source has documentation',
+    command:'/finoff', mbti:'ISTJ-A', gender:'Male',
+    tier:'staff', dept:'Finance',
+    question:'"Where does this number come from, is there evidence, and is it recorded correctly?"',
+    persona:'Ledger is meticulous, understated, and completely reliable. Keeps organizational numbers clean, accurate, and fully auditable. If Sterling is the high-level financial strategist, Ledger ensures the financial foundation never cracks.',
+    scope:['Income log: Sasin · KPN · Kawai · private students · RBSO · other','Monthly expense tracker by category','Invoice template creation','Monthly financial summary report to CFO Sterling'],
+    strengths:['Meticulous financial document management','Accuracy verification — catches errors before they compound','Consistent budget tracking across all income streams','High-volume daily accounting work'],
+    weaknesses:['Dislikes sudden changes to recording structures','Not suited for idea-pitching or persuasion tasks','Needs Sterling to connect raw numbers to strategy'],
+    collaborates:[{name:'Sterling',why:'Financial reporting and strategy connection'},{name:'Eve',why:'Event budget tracking'},{name:'Atlas',why:'Project-level expense monitoring'}],
+    principles:['Record format: Date | Source | Type | Amount | Notes — always','Monthly summary: income + expense by category + net savings','Documentation errors are unacceptable — period','Every number must be traceable to a verifiable source'],
+    tags:['Expense Tracking','Income Log','Invoice','Monthly Summary','Accounting'],
+    reportTo:'CFO Sterling', receivesFrom:'—',
+  },
+  {
+    id:'blaze', initial:'Bl',
+    name:'Blaze', title:'Marketing Coordinator',
+    subtitle:'Campaign Executor — converts ideas into real published content',
+    command:'/sales', mbti:'ESTP-A', gender:'Male',
+    tier:'staff', dept:'Marketing',
+    question:'"What are we putting out today, and how do we make people stop scrolling?"',
+    persona:'Blaze converts Nova\'s ideas into real-world posts, campaigns, and sales copy. High-energy, bold, people-oriented, and fast-moving. Thrives on the moment something goes live. Agile, assertive, motivated by visible rapid results.',
+    scope:['Caption writing with hook → story → CTA → hashtags','Content idea generation','Teaching studio promotion copy','Content calendar execution: 3–5 posts/week','Social media posting and engagement'],
+    strengths:['Executes fast — ideas become published content quickly','Strong natural communicator with audience intuition','Creates content with authentic energy','Excellent at pushing messages into public space'],
+    weaknesses:['May skip important details in the rush to ship','More energized by action than by strategy','Needs Nova to steer and protect brand direction'],
+    collaborates:[{name:'Nova',why:'Receives concept direction and brand guardrails'},{name:'Eve',why:'Event promotion and communication'},{name:'Wren',why:'Language refinement for English captions'}],
+    principles:['First line must stop the scroll — it\'s the only line that initially matters','Formula: Hook → Story/Value → Call to Action → Hashtags','Mix: Performance 30% | Teaching 30% | Journey 25% | Promo 15%','Testimonial-style + limited-slot urgency for private lesson promotion'],
+    tags:['Caption','Social Media','Campaign','Content Calendar','Execution'],
+    reportTo:'CMO Nova', receivesFrom:'—',
+  },
+  {
+    id:'byte', initial:'By',
+    name:'Byte', title:'IT Support Specialist',
+    subtitle:'Technical Fixer — systems crash, Byte fixes, minimal words',
+    command:'/it', mbti:'ISTP-A', gender:'Female',
+    tier:'staff', dept:'IT Support',
+    question:'"Where exactly is the fault, what\'s been tried, and how many minutes until we need it back?"',
+    persona:'Byte is quiet, agile, and fixes technical problems faster than anyone else. Minimal words — but when systems crash, files disappear, or Zoom breaks, Byte is the first and correct call. Calm under pressure, prefers fixing the actual problem over explaining theory.',
+    scope:['Sasin event tech checklist: Zoom host key · waiting room · recording · permissions · mute-on-entry','Troubleshooting protocol: Identify → Reproduce → Isolate → Fix → Document','File organization guide','Google Workspace and AV setup','Device connection and configuration'],
+    strengths:['Fast, precise situational problem-solving','Technical system management and maintenance','Equipment setup under event pressure','Reliable performance when everything is going wrong'],
+    weaknesses:['Dislikes lengthy explanations when action is needed','Can be frustrated with incomplete problem information','Needs clear briefs from Eve or Orion'],
+    collaborates:[{name:'Pixel',why:'Technical systems and automation infrastructure'},{name:'Eve',why:'Event technical support and AV setup'},{name:'Orion',why:'Operational tools and system maintenance'}],
+    principles:['Troubleshoot: Identify → Reproduce → Isolate → Fix → Document','Sasin pre-event checklist: every item checked, no exceptions','Full test run minimum 30 minutes before any event','Backup always ready: mobile hotspot + phone camera'],
+    tags:['Zoom','Troubleshooting','AV Setup','Google Workspace','File Management'],
+    reportTo:'CTO Pixel', receivesFrom:'—',
+  },
+  {
+    id:'wren', initial:'W',
+    name:'Wren', title:'Language Coach / Communication Trainer',
+    subtitle:'English specialist — ordinary messages become clear, credible communication',
+    command:'/coach', mbti:'ENFJ-T', gender:'Female',
+    tier:'staff', dept:'Human Resources',
+    question:'"How should the reader feel after reading this, and how formal is the context?"',
+    persona:'Wren transforms ordinary messages into clear, credible, context-appropriate communication. Warm but rigorous — maintains high standards while ensuring the learner never loses confidence. Deeply attentive to tone, register, and the gap between what was said and what was meant.',
+    scope:['Speaking practice — TOEFL/IELTS task-types','Vocabulary building: 5–10 words/week in music/teaching/events context','Grammar correction with explanation','Professional email review and polishing','English caption refinement for social media'],
+    strengths:['Makes language feel natural rather than translated','Accessible, clear teaching methodology','Highly effective for professional English communication','Suited for emails, lesson delivery, and spoken English'],
+    weaknesses:['May spend too long searching for the precise right word','Sometimes prioritizes softness over directness','Needs Orion or Atlas to define message objectives first'],
+    collaborates:[{name:'Sensei',why:'Language support in music education lessons'},{name:'Nova',why:'Brand voice and English captions'},{name:'Blaze',why:'Sales message language refinement'},{name:'Sage',why:'Organizational communication skills'}],
+    principles:['Mistakes are data — every error reveals exactly what to practice','Progress over perfection — fluency is built through use, not waiting','Context is everything — grammar rules mean nothing without real examples','Confidence first — speaking with minor errors beats staying silent'],
+    tags:['TOEFL','IELTS','Speaking Practice','Email Polishing','Vocabulary','Grammar'],
+    reportTo:'HR Manager Sage', receivesFrom:'—',
+  },
+];
+
+/* ════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════ */
+const TIER_CFG = {
+  special:    { label:'Special Roles',       dot:'var(--special-c)', accent:'#CBD5E1', avatarBg:'rgba(203,213,225,0.08)', avatarBorder:'rgba(203,213,225,0.2)', tagBg:'rgba(203,213,225,0.07)', tagColor:'#CBD5E1', tagBorder:'rgba(203,213,225,0.15)', glow:'rgba(203,213,225,0.04)', gradA:'rgba(203,213,225,0.05)', gradB:'transparent' },
+  clevel:     { label:'C-Level Executives',  dot:'var(--clevel-c)',  accent:'#38BDF8', avatarBg:'rgba(56,189,248,0.08)',  avatarBorder:'rgba(56,189,248,0.2)',  tagBg:'rgba(56,189,248,0.07)',  tagColor:'#7DD3FC', tagBorder:'rgba(56,189,248,0.15)',  glow:'rgba(56,189,248,0.04)',  gradA:'rgba(56,189,248,0.07)', gradB:'transparent' },
+  management: { label:'Management',          dot:'var(--mgmt-c)',   accent:'#818CF8', avatarBg:'rgba(129,140,248,0.08)', avatarBorder:'rgba(129,140,248,0.2)', tagBg:'rgba(129,140,248,0.07)', tagColor:'#A5B4FC', tagBorder:'rgba(129,140,248,0.15)', glow:'rgba(129,140,248,0.04)', gradA:'rgba(129,140,248,0.06)', gradB:'transparent' },
+  staff:      { label:'Staff / Specialists', dot:'var(--staff-c)',  accent:'#34D399', avatarBg:'rgba(52,211,153,0.08)',  avatarBorder:'rgba(52,211,153,0.2)',  tagBg:'rgba(52,211,153,0.07)',  tagColor:'#6EE7B7', tagBorder:'rgba(52,211,153,0.15)',  glow:'rgba(52,211,153,0.04)',  gradA:'rgba(52,211,153,0.05)', gradB:'transparent' },
+};
+const TIER_ORDER = ['special','clevel','management','staff'];
+const DEPARTMENTS = [...new Set(TEAM.map(m=>m.dept))];
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let currentTier    = 'all';
+let currentDept    = 'all';
+let currentQuery   = '';
+let currentTab     = 'overview';
+let currentMember  = null;
+let filteredList   = [];
+
+/* ════════════════════════════════════════
+   UTILITIES
+════════════════════════════════════════ */
+function setDate(){
+  const d = new Date();
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('navDate').textContent = `${d.getDate()} ${mo[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function hl(text, q){
+  if(!q) return text;
+  const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re, '<mark class="hl">$1</mark>');
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  showToast(`Copied: ${text}`);
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = '✓ ' + msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+/* ════════════════════════════════════════
+   FILTERS SETUP
+════════════════════════════════════════ */
+function buildFilters(){
+  // Tier tabs
+  const tt = document.getElementById('tierTabs');
+  ['all',...TIER_ORDER].forEach(t=>{
+    const cnt = t==='all' ? TEAM.length : TEAM.filter(m=>m.tier===t).length;
+    const btn = document.createElement('button');
+    btn.className = 'tier-tab' + (t==='all'?' active':'');
+    btn.dataset.tier = t;
+    btn.innerHTML = `${t==='all'?'All':TIER_CFG[t].label} <span class="cnt">${cnt}</span>`;
+    btn.addEventListener('click',()=>{ currentTier=t; currentDept='all'; syncDeptPills(); renderGrid(); });
+    tt.appendChild(btn);
+  });
+
+  // Dept pills
+  syncDeptPills();
+}
+
+function syncDeptPills(){
+  document.querySelectorAll('.tier-tab').forEach(b=>b.classList.toggle('active',b.dataset.tier===currentTier));
+  const dp = document.getElementById('deptPills');
+  dp.innerHTML='';
+  const depts = currentTier==='all' ? DEPARTMENTS : [...new Set(TEAM.filter(m=>m.tier===currentTier).map(m=>m.dept))];
+  depts.forEach(d=>{
+    const pill = document.createElement('button');
+    pill.className='dept-pill'+(d===currentDept?' active':'');
+    pill.textContent=d;
+    pill.addEventListener('click',()=>{ currentDept=d; syncDeptPills(); renderGrid(); });
+    dp.appendChild(pill);
+  });
+}
+
+/* ════════════════════════════════════════
+   RENDER GRID
+════════════════════════════════════════ */
+function renderGrid(){
+  const wrap = document.getElementById('gridWrap');
+  wrap.innerHTML='';
+  const q = currentQuery.toLowerCase().trim();
+
+  filteredList = TEAM.filter(m=>{
+    if(currentTier!=='all' && m.tier!==currentTier) return false;
+    if(currentDept!=='all' && m.dept!==currentDept) return false;
+    if(!q) return true;
+    return [m.name,m.title,m.dept,m.command,m.mbti,...(m.tags||[]),m.subtitle].some(s=>s.toLowerCase().includes(q));
+  });
+
+  document.getElementById('resultsMeta').innerHTML =
+    `Showing <b>${filteredList.length}</b> of <b>${TEAM.length}</b> members`;
+
+  if(!filteredList.length){
+    wrap.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No members found</div><div class="empty-sub">Try a different search or clear filters</div></div>`;
+    return;
+  }
+
+  const tiers = currentTier==='all' ? TIER_ORDER : [currentTier];
+  tiers.forEach(tier=>{
+    const members = filteredList.filter(m=>m.tier===tier);
+    if(!members.length) return;
+    const cfg = TIER_CFG[tier];
+
+    const hdr = document.createElement('div');
+    hdr.className='tier-header';
+    hdr.innerHTML=`<div class="th-dot" style="background:${cfg.accent}"></div><div class="th-name">${cfg.label}</div><div class="th-line"></div><div class="th-count">${members.length}</div>`;
+    wrap.appendChild(hdr);
+
+    const grid = document.createElement('div');
+    grid.className='card-grid';
+    members.forEach((m,i)=>{
+      const card = buildCard(m, q, cfg);
+      card.style.animationDelay = `${i*0.04}s`;
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+  });
+}
+
+/* ════════════════════════════════════════
+   BUILD CARD
+════════════════════════════════════════ */
+function buildCard(m, q, cfg){
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.id = `card-${m.id}`;
+  card.style.setProperty('--card-accent',    cfg.accent);
+  card.style.setProperty('--card-glow',      cfg.glow);
+  card.style.setProperty('--card-avatar-bg', cfg.avatarBg);
+  card.style.setProperty('--card-avatar-border', cfg.avatarBorder);
+  card.style.setProperty('--card-tag-bg',    cfg.tagBg);
+  card.style.setProperty('--card-tag-color', cfg.tagColor);
+  card.style.setProperty('--card-tag-border',cfg.tagBorder);
+  card.style.setProperty('--card-accent-solid', cfg.avatarBg.replace('0.08','0.15'));
+
+  const starHtml = m.isStar ? `<div class="card-star">Cross-functional ★</div>` : '';
+  const tagsHtml = (m.tags||[]).slice(0,3).map(t=>`<span class="card-tag">${hl(t,q)}</span>`).join('');
+
+  const isCmd = m.command==='always active';
+  const cmdHtml = isCmd
+    ? `<span class="card-cmd" style="color:var(--t4);font-style:italic">always active</span>`
+    : `<div class="card-cmd">${hl(m.command,q)}</div>
+       <button class="card-cmd-copy" onclick="event.stopPropagation();copyText('${m.command}')" title="Copy command">⎘</button>`;
+
+  card.innerHTML=`
+    ${starHtml}
+    <div class="card-top">
+      <div class="card-avatar">${m.initial}</div>
+      <div class="card-meta">
+        <div class="card-tier-badge"><div class="card-tier-dot"></div>${m.tier.charAt(0).toUpperCase()+m.tier.slice(1)} · ${m.dept}</div>
+        <div class="card-name">${hl(m.name,q)}</div>
+        <div class="card-title">${hl(m.title,q)}</div>
+      </div>
+    </div>
+    <div class="card-hr"></div>
+    <div class="card-cmd-row">${cmdHtml}<div class="card-mbti">${m.mbti}</div></div>
+    <div class="card-question">${m.question}</div>
+    <div class="card-tags">${tagsHtml}</div>
+  `;
+  card.addEventListener('click', ()=>openModal(m));
+  return card;
+}
+
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
+function openModal(m){
+  currentMember = m;
+  currentTab = 'overview';
+  const cfg = TIER_CFG[m.tier];
+
+  // Accent
+  document.getElementById('modal').style.setProperty('--modal-accent', cfg.accent);
+  document.getElementById('modal').style.setProperty('--modal-grad-a', cfg.gradA);
+  document.getElementById('mHead').style.background = `linear-gradient(135deg, ${cfg.gradA}, transparent)`;
+
+  // Avatar
+  const av = document.getElementById('mAvatar');
+  av.textContent = m.initial;
+  av.style.cssText = `background:${cfg.avatarBg};color:${cfg.accent};border-color:${cfg.avatarBorder};`;
+
+  // Tier
+  document.querySelector('#mTier span').textContent = `${TIER_CFG[m.tier].label} · ${m.dept}`;
+  document.querySelector('#mTier .modal-tier-dot').style.background = cfg.accent;
+  document.getElementById('mName').textContent = m.name + (m.isStar ? ' ★' : '');
+  document.getElementById('mTitleTxt').textContent = m.title;
+
+  // Pills
+  const isCmd = m.command==='always active';
+  document.getElementById('mPills').innerHTML=`
+    ${isCmd
+      ? `<div class="modal-pill"><span style="color:var(--t4);font-style:italic">always active</span></div>`
+      : `<div class="modal-pill modal-pill-cmd" onclick="copyText('${m.command}')"><b>${m.command}</b><span class="pill-copy-icon">⎘</span></div>`}
+    <div class="modal-pill">MBTI <b>${m.mbti}</b></div>
+    <div class="modal-pill">Gender <b>${m.gender}</b></div>
+    <div class="modal-pill">Dept <b>${m.dept}</b></div>
+  `;
+
+  // Tabs
+  document.querySelectorAll('.m-tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.tab==='overview');
+  });
+
+  renderTabContent(m, 'overview', cfg);
+
+  // Nav
+  const idx = filteredList.findIndex(x=>x.id===m.id);
+  document.getElementById('mPrev').disabled = idx<=0;
+  document.getElementById('mNext').disabled = idx>=filteredList.length-1;
+  document.getElementById('mPos').textContent = `${idx+1} / ${filteredList.length}`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderTabContent(m, tab, cfg){
+  const body = document.getElementById('mBody');
+  const swHtml = `
+    <div class="sw-grid">
+      <div class="sw-block str">
+        <div class="sw-title">Strengths</div>
+        <ul class="sw-list">${(m.strengths||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="sw-block wk">
+        <div class="sw-title">Weaknesses</div>
+        <ul class="sw-list">${(m.weaknesses||[]).map(w=>`<li>${w}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+
+  const collabHtml = (m.collaborates||[]).map(c=>`
+    <div class="collab-card">
+      <div class="collab-name">${c.name}</div>
+      <div class="collab-why">${c.why}</div>
+    </div>`).join('');
+
+  const principlesHtml = (m.principles||[]).map((p,i)=>`
+    <div class="p-row">
+      <div class="p-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="p-text">${p}</div>
+    </div>`).join('');
+
+  const scopeHtml = (m.scope||[]).map(s=>`<span class="scope-highlight">${s}</span>`).join(' ');
+  const tagsHtml = (m.tags||[]).map(t=>`<span class="m-tag">${t}</span>`).join('');
+
+  body.innerHTML=`
+    <div class="tab-panel ${tab==='overview'?'active':''}" data-panel="overview">
+      <div class="m-sec">
+        <div class="m-sec-label">Persona</div>
+        <div class="m-persona">${m.persona}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-label">Signature Question</div>
+        <div class="m-question" style="border-left-color:${cfg.accent}">${m.question}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-label">Strengths &amp; Weaknesses</div>
+        ${swHtml}
+      </div>
+      ${collabHtml ? `<div class="m-sec"><div class="m-sec-label">Collaborates With</div><div class="collab-grid">${collabHtml}</div></div>` : ''}
+      <div class="m-sec">
+        <div class="m-sec-label">Tags</div>
+        <div class="m-tags">${tagsHtml}</div>
+      </div>
+    </div>
+    <div class="tab-panel ${tab==='scope'?'active':''}" data-panel="scope">
+      <div class="m-sec">
+        <div class="m-sec-label">Scope &amp; Responsibilities</div>
+        <div class="m-scope">${scopeHtml}</div>
+      </div>
+    </div>
+    <div class="tab-panel ${tab==='principles'?'active':''}" data-panel="principles">
+      <div class="m-sec">
+        <div class="m-sec-label">Core Working Principles</div>
+        <div class="principles">${principlesHtml}</div>
+      </div>
+    </div>
+    <div class="tab-panel ${tab==='escalation'?'active':''}" data-panel="escalation">
+      <div class="m-sec">
+        <div class="m-sec-label">Reporting Structure</div>
+        <div class="esc-table">
+          <div class="esc-row"><div class="esc-label">Reports To</div><div class="esc-val">${m.reportTo}</div></div>
+          <div class="esc-row"><div class="esc-label">Receives From</div><div class="esc-val">${m.receivesFrom}</div></div>
+          <div class="esc-row"><div class="esc-label">Department</div><div class="esc-val">${m.dept}</div></div>
+          <div class="esc-row"><div class="esc-label">Tier</div><div class="esc-val">${TIER_CFG[m.tier].label}</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  currentMember=null;
+}
+
+/* ════════════════════════════════════════
+   COMMAND PANEL
+════════════════════════════════════════ */
+function buildCmdPanel(){
+  const list = document.getElementById('cmdList');
+  const grouped = {};
+  TEAM.forEach(m=>{
+    if(!grouped[m.tier]) grouped[m.tier]=[];
+    grouped[m.tier].push(m);
+  });
+  TIER_ORDER.forEach(tier=>{
+    if(!grouped[tier]) return;
+    const div = document.createElement('div');
+    div.className='cmd-group';
+    div.innerHTML=`<div class="cmd-group-label">${TIER_CFG[tier].label}</div>` +
+      grouped[tier].map(m=>`
+        <div class="cmd-item" onclick="copyText('${m.command}')">
+          <div class="cmd-code ${m.command==='always active'?'cmd-always':''}">${m.command}</div>
+          <div class="cmd-info">
+            <div class="cmd-name">${m.name}</div>
+            <div class="cmd-desc">${m.title.split(' ').slice(0,5).join(' ')}…</div>
+          </div>
+        </div>`).join('');
+    list.appendChild(div);
+  });
+}
+
+function openCmdPanel(){
+  document.getElementById('cmdPanel').classList.add('open');
+  document.getElementById('cmdBackdrop').classList.add('open');
+}
+function closeCmdPanel(){
+  document.getElementById('cmdPanel').classList.remove('open');
+  document.getElementById('cmdBackdrop').classList.remove('open');
+}
+
+/* ════════════════════════════════════════
+   QUICK ROUTE
+════════════════════════════════════════ */
+function setupQuickRoute(){
+  document.querySelectorAll('.qr-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const target = btn.dataset.target;
+      const member = TEAM.find(m=>m.id===target);
+      if(!member) return;
+      // Reset filters and search
+      currentTier='all'; currentDept='all'; currentQuery='';
+      document.getElementById('navSearch').value='';
+      syncDeptPills(); renderGrid();
+      // Highlight
+      document.querySelectorAll('.qr-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      setTimeout(()=>{
+        const card = document.getElementById(`card-${target}`);
+        if(card){ card.scrollIntoView({behavior:'smooth',block:'center'}); openModal(member); }
+        setTimeout(()=>btn.classList.remove('active'),2000);
+      },100);
+    });
+  });
+}
+
+/* ════════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════════ */
+function setupScrollToTop(){
+  const btn = document.getElementById('stt');
+  window.addEventListener('scroll',()=>btn.classList.toggle('show',window.scrollY>400));
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+/* ════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+════════════════════════════════════════ */
+function setupKeyboard(){
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(document.getElementById('modalOverlay').classList.contains('open')) closeModal();
+      else if(document.getElementById('cmdPanel').classList.contains('open')) closeCmdPanel();
+    }
+    if((e.metaKey||e.ctrlKey) && e.key==='k'){
+      e.preventDefault();
+      document.getElementById('navSearch').focus();
+    }
+    if(document.getElementById('modalOverlay').classList.contains('open')){
+      const idx = filteredList.findIndex(x=>x.id===currentMember?.id);
+      if(e.key==='ArrowRight' && idx<filteredList.length-1) openModal(filteredList[idx+1]);
+      if(e.key==='ArrowLeft'  && idx>0)                     openModal(filteredList[idx-1]);
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   EVENTS WIRING
+════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded',()=>{
+  setDate();
+  buildFilters();
+  renderGrid();
+  buildCmdPanel();
+  setupQuickRoute();
+  setupScrollToTop();
+  setupKeyboard();
+
+  // Search
+  let searchTimer;
+  document.getElementById('navSearch').addEventListener('input',e=>{
+    clearTimeout(searchTimer);
+    searchTimer=setTimeout(()=>{
+      currentQuery=e.target.value;
+      renderGrid();
+    },180);
+  });
+
+  // Modal close
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  document.getElementById('modalOverlay').addEventListener('click',e=>{
+    if(e.target===document.getElementById('modalOverlay')) closeModal();
+  });
+
+  // Modal tabs
+  document.getElementById('mTabs').addEventListener('click',e=>{
+    const tab = e.target.closest('.m-tab');
+    if(!tab||!currentMember) return;
+    document.querySelectorAll('.m-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentTab=tab.dataset.tab;
+    renderTabContent(currentMember, currentTab, TIER_CFG[currentMember.tier]);
+  });
+
+  // Modal prev/next
+  document.getElementById('mPrev').addEventListener('click',()=>{
+    const idx=filteredList.findIndex(x=>x.id===currentMember?.id);
+    if(idx>0) openModal(filteredList[idx-1]);
+  });
+  document.getElementById('mNext').addEventListener('click',()=>{
+    const idx=filteredList.findIndex(x=>x.id===currentMember?.id);
+    if(idx<filteredList.length-1) openModal(filteredList[idx+1]);
+  });
+
+  // Command panel
+  document.getElementById('openCmdPanel').addEventListener('click',openCmdPanel);
+  document.getElementById('closeCmdPanel').addEventListener('click',closeCmdPanel);
+  document.getElementById('cmdBackdrop').addEventListener('click',closeCmdPanel);
+});
+</script>
+</body>
+</html>
